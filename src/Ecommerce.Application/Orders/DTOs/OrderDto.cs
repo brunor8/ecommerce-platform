@@ -23,13 +23,5 @@ public sealed record OrderDto(
             order.CancelledAt,
             order.ReasonCancelled,
             order.Total,
-            order.Items
-                .Select(item => new OrderItemDto(
-                    item.Id,
-                    item.ProductId,
-                    item.ProductName,
-                    item.UnitPrice,
-                    item.Quantity,
-                    item.TotalPrice))
-                .ToArray());
+            order.Items.Select(OrderItemDto.FromDomain).ToArray());
 }

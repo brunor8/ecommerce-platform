@@ -1,3 +1,5 @@
+using Ecommerce.Domain.Orders;
+
 namespace Ecommerce.Application.Orders.DTOs;
 
 public sealed record OrderItemDto(
@@ -6,4 +8,14 @@ public sealed record OrderItemDto(
     string ProductName,
     decimal UnitPrice,
     int Quantity,
-    decimal TotalPrice);
+    decimal TotalPrice)
+{
+    public static OrderItemDto FromDomain(OrderItem orderItem) =>
+        new (
+            orderItem.Id,
+            orderItem.ProductId,
+            orderItem.ProductName,
+            orderItem.UnitPrice,
+            orderItem.Quantity,
+            orderItem.TotalPrice);
+}
